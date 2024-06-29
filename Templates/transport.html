@@ -1,0 +1,97 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet"href="{% static 'assets/css/transport.css' %}">
+</head>
+
+<div class="wrapper">
+    <div class="container">
+        <form action="transport"method="post">
+            {% csrf_token %}
+            <h2 style="color:darkgreen;">{{success}}</h2>
+            <h1>
+                <i class="fas fa-shipping-fast"></i>
+                Shipping Details
+            </h1>
+            <div class="name">
+                <div>
+                    <label for="f-name">Retailer Name</label>
+                   
+                    <input type="text" value="{{ret}}"name="fnm">
+                   
+                </div>
+                
+            </div>
+            <div class="name">
+                <div>
+                    <label for="f-name">Vehicle</label>
+                  
+                    <select name="vnm"id="vnm">
+                        {% for ls in vnm %}
+                        <option value="{{ls.vnm}}">{{ls.vnm}}</option>
+                        {% endfor %}
+                    </select>
+                   
+                </div>
+            </div>
+            <div class="name">
+                <div>
+                    <label for="f-name">Driver</label>
+                    
+                    <select name="dnm">
+                        {% for d in alldrv %}
+                        <option value="{{d}}">{{d}}</option>
+                        {% endfor %}
+                    </select>
+                   
+                </div>
+            </div>
+
+            <div class="street">
+                <label for="name">Shipping Address</label>
+                <textarea name="address"id="sp"style="width:200px;height:100px;"></textarea>
+            </div>
+            <div class="address-info">
+                <div>
+                    <label for="city">Booking Date</label>
+                    <input type="date" name="bd"id="bookingDate"value="{{ current_date|date:'Y-m-d' }}" readonly>
+                </div>
+                <div>
+                    <label for="state">Delivery Date</label>
+                    <input type="date" name="dd"id="deliveryDate"value="{{ future_date|date:'Y-m-d' }}" readonly>
+                </div>
+                <div>
+                    <label for="zip">Shipping Cost</label>
+                    <input type="number"name="sc"id="sc">
+                </div>
+            </div>
+            <p id="ins"style="color:white;"><h1>Instructions to Follow:</h1>
+                For successful delivery, please ensure that the shipping cost is provided to our delivery partner. Additionally, The recipient's signature is required upon delivery
+            </p>
+            <button id="book"style="background-color:purple;color:white;border-color:purple;border-radius:5px;height:30px;margin-top:-10px;">Book Transport</button>  
+        </div>
+       
+        </form>
+</div>
+
+
+<script>
+function shp(){
+    var vnm = document.getElementById('vnm').value;
+    var sc = document.getElementById('sc');
+    if(vnm=='Truck'){
+      sc.value=500;
+    }
+    else if(vnm=='Van'){
+      sc.value=300;
+    }
+    else if(vnm=='Jeep'){
+      sc.value=250;
+    }
+}
+   // Event listener to call shp function when dropdown selection changes
+document.getElementById("vnm").addEventListener("change", shp);
+  // Initial call to shp function to set default shipping cost
+shp();
+
+</script>

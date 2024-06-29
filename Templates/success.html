@@ -1,0 +1,38 @@
+{% load static %}
+<style>
+    body{
+        background-image: url({% static 'assets/img/trans.avif' %});
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+    .card{
+        margin-top: 50px;
+        margin-left: 300px;
+        box-sizing: border-box;
+        box-shadow: 0 2px 4px 0;
+        width:600px;
+        height:400px;
+    }
+   
+    a{
+        text-decoration: none;
+        font-size: 30px;
+        color:rgb(151, 26, 26);
+        margin-left: 250px;
+       
+    }
+    img{
+        margin-top: 30px;
+        margin-left: 150px;
+        width:300px;
+        height:250px;
+        border-radius: 10px;
+    }
+</style>
+<body>
+    <div class="card">
+    <img src="{% static 'assets/img/truck.gif' %}">
+    <h2 style="color:darkgreen;">{{success}}</h2>
+    <a href="/cat">Back</a>
+    </div>
+</body>

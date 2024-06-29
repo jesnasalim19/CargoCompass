@@ -1,0 +1,76 @@
+{% load static %}
+<head>
+<style>
+    .st{
+        color:darkred;
+        text-align: center;
+        float: right;
+        font-size: 50px;
+        margin-top: -500px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        padding-right: 500px;
+
+    }
+    body{
+        margin: 0;
+        background-color: #E5E6E4;
+    }
+    .sidenav{
+        width:210px;
+        height:100%;
+        background-color:rgb(8, 8, 8);
+    }
+    h2{
+        color:rgb(150, 212, 166);
+        margin-left: 10px;
+    }
+    .pic{
+        width:150px;
+        height:150px;
+        border-radius: 50%;
+        margin-left: 10px;
+    }
+    .pic1{
+        margin-bottom: 0;
+        margin-top: -750px;
+        width:86%;
+        height:101%;
+        float: right;
+    }
+    .link{
+        color:white;
+        font-size: 20px;
+        text-decoration: none;
+        margin-left: 30px;
+    }
+</style>
+</head>
+<body>
+    <div class="sidenav">
+        <br>
+        <h2>Welcome Admin</h2>
+        <br>
+        <img src="{% static 'assets/img/Admin.jpg' %}"class="pic">
+        <br>
+        <br>
+        <a href="/AdminApp/userview"class="link">User View</a>
+        <br>
+        <br>
+        <a href="/AdminApp/driverview"class="link">Driver View</a>
+        <br>
+        <br>
+        <a href="/AdminApp/vehicleview"class="link">Vehicle View</a>
+        <br>
+        <br>
+        <a href="/AdminApp/Auction_view"class="link">Auction</a>
+        <br>
+        <br>
+        <a href="/AdminApp/adminbid_view"class="link">Bid View</a>
+        <br>
+        <br>
+        <a href="/AdminApp/adminbid_result"class="link">Bid Result</a>
+    </div>
+    <div class="con">
+        <h1 class="st">CargoCompass</h1>
+    </div>
+</body>

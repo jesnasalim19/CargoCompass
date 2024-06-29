@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet"href="{% static 'assets/css/vehicle.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<meta charset="UTF-8">
+	<title>Side-Navigation-Bar</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://kit.fontawesome.com/d03828f538.js" crossorigin="anonymous"></script>
+</head>
+<body style="background-image: url({% static 'chat.avif' %});">
+
+<div class="wrapper">
+    <div class="sidebar">
+        <ul>
+            <li><a href="/home"><i class="fas fa-user"></i>Home</a></li>
+            <li><a href="/cat"><i class="fas fa-user"></i>Production Companies</a></li>
+            <li><a href="/DriverApp/driverreg"><i class="fas fa-laptop-code"></i>Driver Registration</a></li>
+            <li><a href="/VehicleApp/vehiclereg"><i class="fas fa-project-diagram"></i>Vehicle Registration</a></li>
+        </ul> 
+        
+    </div>
+</div>
+
+</body>
+</html>
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Driver Registration</h3>
+                    <p>Fill in the data below.</p>
+                    <form class="requires-validation" novalidate action=""method="post"enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <h2 style="color:rgb(222, 239, 222);">{{veh}}</h2>
+
+                        
+
+                        <div class="col-md-12">
+                            <input class="form-control" type="text"id="dnm" name="dnm" placeholder="Driver Name" required>
+                            <span id="sdnm"></span>
+                            <div class="valid-feedback">Driver Name</div>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="form-control" type="file" name="dim" placeholder="Driver Image" required>
+                            <div class="valid-feedback">Image</div>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="form-control" type="text"id="lno" name="lno" placeholder="License No:" required>
+                            <span id="slno"></span>
+                            <div class="valid-feedback">License Number</div>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="form-control" type="file" name="lcn" placeholder="License" required>
+                            <div class="valid-feedback">License</div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                          <input class="form-control" type="text"id="loc" name="loc" placeholder="Location" required>
+                          <span id="sloc"></span>
+                           <div class="valid-feedback">Location</div>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="form-control" type="number" id="mob"name="mob" placeholder="Mobile Number" required>
+                            <span id="smob"></span>
+                             <div class="valid-feedback">Mobile Number</div>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="add"></textarea>
+                             <div class="valid-feedback">Address</div>
+                        </div>
+                        <div class="form-button mt-3">
+                            <button id="submit" type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $('#sdnm').hide();
+        $('#slno').hide();
+        $('#sloc').hide();
+        $('#smob').hide();
+        $('#dnm').focusout(function(){driver()});
+        $('#lno').focusout(function(){lnumber()});
+        $('#loc').focusout(function(){location()});
+        $('#mob').focusout(function(){mobile()});
+        function driver(){
+            var dnm = $('#dnm').val();
+            const regf = /^[A-Z a-z]+$/;
+            if(!regf.test(dnm)){
+                $('#sdnm').html("Only Alphabets allowed..");
+                $('#sdnm').show();
+                $('#sdnm').css('color','#FF0000');
+                $('#dnm').css('border-color','#FF0000');
+
+            }
+            else{
+                $('#sdnm').hide();
+                $('#dnm').css('border-color','#008000');
+            }
+        }
+        function lnumber(){
+            var lno = $('#lno').val();
+            const regl = /^[A-Z a-z 0-9 -]+$/;
+            if(!regl.test(lno)){
+                $('#slno').html("Check Format of License Number");
+                $('#slno').show();
+                $('#slno').css('color','#FF0000');
+                $('#lno').css('border-color','#FF0000');
+            }
+            else{
+                $('#slno').hide();
+                $('#lno').css('border-color','#008000');
+            }
+
+        }
+        function location(){
+            var loc = $('#loc').val();
+            const regf = /^[A-Z a-z]+$/;
+            if(!regf.test(loc)){
+                $('#sloc').html("Only Alphabets allowed..");
+                $('#sloc').show();
+                $('#sloc').css('color','#FF0000');
+                $('#loc').css('border-color','#FF0000');
+            }
+            else{
+                $('#sloc').hide();
+                $('#loc').css('border-color','#008000');
+            }
+        }
+        function mobile(){
+            var mob = $('#mob').val();
+            if(mob.length!=10){
+                $('#smob').html("Only 10 digits allowed..");
+                $('#smob').show();
+                $('#smob').css('color','#FF0000');
+                $('#mob').css('border-color','#FF0000');
+            }
+            else{
+                $('#smob').hide();
+                $('#mob').css('border-color','#008000');
+            }
+        }
+    });
+
+</script>
